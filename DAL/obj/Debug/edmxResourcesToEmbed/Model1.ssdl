@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WorkNetDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Employers">
+    <Key>
+      <PropertyRef Name="EmployerId" />
+    </Key>
+    <Property Name="EmployerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ContactPerson" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ContactEmail" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Industry" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobApplications">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobId" Type="int" Nullable="false" />
+    <Property Name="JobSeekerId" Type="int" Nullable="false" />
+    <Property Name="ApplicationDate" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobCategories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobPostings">
+    <Key>
+      <PropertyRef Name="JobId" />
+    </Key>
+    <Property Name="JobId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployerId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="JobTitle" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="JobDescription" Type="varchar(max)" Nullable="false" />
+    <Property Name="JobType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="JobRole" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Location" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MinExperience" Type="int" />
+    <Property Name="MaxExperience" Type="int" />
+    <Property Name="Openings" Type="int" Nullable="false" />
+    <Property Name="RequiredQualification" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="SalaryRange" Type="varchar" MaxLength="50" />
+    <Property Name="PostedDate" Type="date" Nullable="false" />
+    <Property Name="ExpiryDate" Type="date" Nullable="false" />
+    <Property Name="RequiredSkills" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobSeekers">
+    <Key>
+      <PropertyRef Name="JobSeekerId" />
+    </Key>
+    <Property Name="JobSeekerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ContactNumber" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="255" />
+    <Property Name="Skills" Type="varchar" MaxLength="255" />
+    <Property Name="Experience" Type="int" />
+    <Property Name="ResumePath" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PasswordHash" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="CreatedTime" Type="time" Precision="7" />
+  </EntityType>
+  <Association Name="FK__JobApplic__JobSe__5CD6CB2B">
+    <End Role="JobSeekers" Type="Self.JobSeekers" Multiplicity="1" />
+    <End Role="JobApplications" Type="Self.JobApplications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobSeekers">
+        <PropertyRef Name="JobSeekerId" />
+      </Principal>
+      <Dependent Role="JobApplications">
+        <PropertyRef Name="JobSeekerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__JobSeeker__UserI__3B75D760">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="JobSeekers" Type="Self.JobSeekers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="JobSeekers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Employers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobApplications_JobPostings">
+    <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="1" />
+    <End Role="JobApplications" Type="Self.JobApplications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobPostings">
+        <PropertyRef Name="JobId" />
+      </Principal>
+      <Dependent Role="JobApplications">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobPostings_Employers">
+    <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+    <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employers">
+        <PropertyRef Name="EmployerId" />
+      </Principal>
+      <Dependent Role="JobPostings">
+        <PropertyRef Name="EmployerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobPostings_JobCategories">
+    <End Role="JobCategories" Type="Self.JobCategories" Multiplicity="1" />
+    <End Role="JobPostings" Type="Self.JobPostings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobCategories">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="JobPostings">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WorkNetDBModelStoreContainer">
+    <EntitySet Name="Employers" EntityType="Self.Employers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobApplications" EntityType="Self.JobApplications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobCategories" EntityType="Self.JobCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobPostings" EntityType="Self.JobPostings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobSeekers" EntityType="Self.JobSeekers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__JobApplic__JobSe__5CD6CB2B" Association="Self.FK__JobApplic__JobSe__5CD6CB2B">
+      <End Role="JobSeekers" EntitySet="JobSeekers" />
+      <End Role="JobApplications" EntitySet="JobApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__JobSeeker__UserI__3B75D760" Association="Self.FK__JobSeeker__UserI__3B75D760">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="JobSeekers" EntitySet="JobSeekers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employers_Users" Association="Self.FK_Employers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Employers" EntitySet="Employers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobApplications_JobPostings" Association="Self.FK_JobApplications_JobPostings">
+      <End Role="JobPostings" EntitySet="JobPostings" />
+      <End Role="JobApplications" EntitySet="JobApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobPostings_Employers" Association="Self.FK_JobPostings_Employers">
+      <End Role="Employers" EntitySet="Employers" />
+      <End Role="JobPostings" EntitySet="JobPostings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobPostings_JobCategories" Association="Self.FK_JobPostings_JobCategories">
+      <End Role="JobCategories" EntitySet="JobCategories" />
+      <End Role="JobPostings" EntitySet="JobPostings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
