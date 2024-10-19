@@ -109,16 +109,21 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Areas\Employer\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Employer\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Employer\EmployerAreaRegistration.cs" />
+    <Compile Include="Areas\Employer\ViewModels\EmployerLoginVM.cs" />
+    <Compile Include="Areas\JobSeeker\Controllers\AccountController.cs" />
+    <Compile Include="Areas\JobSeeker\Controllers\HomeController.cs" />
+    <Compile Include="Areas\JobSeeker\JobSeekerAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\EmployerLoginVM.cs" />
-    <Compile Include="ViewModels\EmployerRegisterVM.cs" />
-    <Compile Include="ViewModels\JobSeekerLoginVM.cs" />
-    <Compile Include="ViewModels\JobSeekerRegisterVM.cs" />
+    <Compile Include="Areas\Employer\ViewModels\EmployerRegisterVM.cs" />
+    <Compile Include="Areas\JobSeeker\ViewModels\JobSeekerLoginVM.cs" />
+    <Compile Include="Areas\JobSeeker\ViewModels\JobSeekerRegisterVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -146,6 +151,14 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Employer\Views\web.config" />
+    <Content Include="Areas\JobSeeker\Views\web.config" />
+    <Content Include="Areas\JobSeeker\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\JobSeeker\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\JobSeeker\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Employer\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Employer\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Employer\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -171,10 +184,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Authentication\JobSeekerLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Employer\Views\Account\" />
+    <Folder Include="Areas\JobSeeker\Views\Account\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

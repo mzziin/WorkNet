@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace WorkNet.ViewModels
+namespace WorkNet.Areas.JobSeeker.ViewModels
 {
     public class JobSeekerLoginVM
     {
@@ -14,11 +14,5 @@ namespace WorkNet.ViewModels
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
-
     }
 }
