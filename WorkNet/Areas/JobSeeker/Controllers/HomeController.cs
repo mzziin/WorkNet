@@ -8,6 +8,7 @@ namespace WorkNet.Areas.JobSeeker.Controllers
 {
     public class HomeController : Controller
     {
+        
         // GET: JobSeeker/Home
         public ActionResult Index()
         {

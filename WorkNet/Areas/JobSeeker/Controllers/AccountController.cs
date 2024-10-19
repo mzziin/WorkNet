@@ -9,7 +9,7 @@ namespace WorkNet.Areas.JobSeeker.Controllers
 {
     public class AccountController : Controller
     {
-        // GET: JobSeeker/Account
+        // login
         [HttpGet]
         public ActionResult JobSeekerLogin()
         {
@@ -19,9 +19,14 @@ namespace WorkNet.Areas.JobSeeker.Controllers
         [HttpPost]
         public ActionResult JobSeekerLogin(JobSeekerLoginVM jobSeeker)
         {
+            if (ModelState.IsValid)
+            {
+
+            }
             return RedirectToAction("JobSeekerLogin");
         }
 
+        // register
         [HttpGet]
         public ActionResult JobSeekerRegister()
         {

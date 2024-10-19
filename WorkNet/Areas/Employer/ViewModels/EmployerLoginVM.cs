@@ -8,12 +8,11 @@ namespace WorkNet.Areas.Employer.ViewModels
 {
     public class EmployerLoginVM
     {
-        [Required]
+        [Required(ErrorMessage ="Please enter your username")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please enter your password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        
     }
 }
