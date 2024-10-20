@@ -22,14 +22,27 @@ namespace WorkNet.Areas.Employer.Controllers
         [HttpPost]
         public ActionResult EmployerLogin(EmployerLoginVM employer)
         {
-            var loginDto = new LoginDTO
+            if (ModelState.IsValid)
             {
-                Username = employer.Username,
-                Password = employer.Password,
-                Role = "Employer"
-            };
-            _accountService.Login(loginDto);
-            return RedirectToAction("EmployerLogin");
+                var loginDto = new LoginDTO
+                {
+                    Username = employer.Username,
+                    Password = employer.Password,
+                    Role = "Employer"
+                };
+                if (_accountService.Login(loginDto))
+                {
+                    TempData["LoginMsg"] = "Successfully logged in";
+                    return RedirectToAction("EmployerLogin");
+                }
+                else
+                {
+                    TempData["LoginMsg"] = "Invalid username or password";
+                    return RedirectToAction("index", "Home");
+                }
+                
+            }
+            return View(employer);
         }
 
         [HttpGet]
@@ -41,7 +54,30 @@ namespace WorkNet.Areas.Employer.Controllers
         [HttpPost]
         public ActionResult EmployerRegsiter(EmployerRegisterVM employer)
         {
-            return RedirectToAction("EmployerLogin");
+            if (ModelState.IsValid)
+            {
+                var registerDTO = new EmployerRegisterDTO
+                {
+                    CompanyName = employer.CompanyName,
+                    Address = employer.Address,
+                    ContactPerson = employer.ContactPerson,
+                    ContactEmail = employer.ContactEmail,
+                    Industry = employer.Industry,
+                    Username = employer.Username,
+                    Password = employer.Password
+                };
+                if (_accountService.RegisterEmployer(registerDTO))
+                {
+                    TempData["RegisterMsg"] = "Employer Registered Successfully";
+                    RedirectToAction("EmployerLogin");
+                }
+                else
+                {
+                    TempData["RegisterMsg"] = "Someting went wrong";
+                    return View(employer);
+                }
+            }
+            return View(employer);
         }
     }
 }

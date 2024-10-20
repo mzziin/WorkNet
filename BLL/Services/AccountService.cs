@@ -9,13 +9,13 @@ namespace BLL.Services
 {
     public class AccountService
     {
-        public void RegisterJobSeeker(JobSeekerRegisterDTO registerDTO)
+        public bool RegisterJobSeeker(JobSeekerRegisterDTO registerDTO)
         {
-
+            return true;
         }
-        public void RegisterEmployer(EmployerRegisterDTO registerDTO)
+        public bool RegisterEmployer(EmployerRegisterDTO registerDTO)
         {
-
+            return true;
         }
         public bool Login(LoginDTO loginDTO)
         {
