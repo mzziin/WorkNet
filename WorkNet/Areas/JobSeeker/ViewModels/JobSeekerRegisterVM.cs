@@ -17,8 +17,11 @@ namespace WorkNet.Areas.JobSeeker.ViewModels
 
         [Required(ErrorMessage = "Please enter your address")]
         public string Address { get; set; }
+
         public string Skills { get; set; }
+
         public Nullable<int> Experience { get; set; }
+
         public string ResumePath { get; set; }
 
         [Required(ErrorMessage = "Please enter your username")]
@@ -30,7 +33,7 @@ namespace WorkNet.Areas.JobSeeker.ViewModels
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", ErrorMessage = "Password must contain: Minimum 8 characters, at least 1 UpperCase Alphabet, 1 LowerCase Alphabet and 1 Number")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Please Confirm your password")]
+        [Required(ErrorMessage = "Please confirm your password")]
         [Display(Name = "Confirm password")]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]

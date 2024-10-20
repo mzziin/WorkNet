@@ -4,32 +4,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utility;
 
 namespace BLL.Services
 {
     public class AccountService
     {
-        public bool RegisterJobSeeker(JobSeekerRegisterDTO registerDTO)
+        public OperationResult RegisterJobSeeker(JobSeekerRegisterDTO registerDTO)
         {
-            return true;
+            var result = new OperationResult();
+
+            return result;
         }
-        public bool RegisterEmployer(EmployerRegisterDTO registerDTO)
+        public OperationResult RegisterEmployer(EmployerRegisterDTO registerDTO)
         {
-            return true;
+            var result = new OperationResult();
+
+            return result;
         }
-        public bool Login(LoginDTO loginDTO)
+        public OperationResult Login(LoginDTO loginDTO)
         {
+            var result = new OperationResult();
+
             if(loginDTO.Role == "JobSeeker")
             {
-                return true;
+                result.IsSuccess = true;
+                result.Message = "Successfully Inserted";
+                return result;
             }
             else if(loginDTO.Role == "Employer")
             {
-                return true;
+                result.IsSuccess = true;
+                result.Message = "Successfully Inserted";
+                return result;
             }
             else
             {
-                return false;
+                result.IsSuccess = true;
+                result.Message = "Successfully Inserted";
+                return result;
             }
         }
     }

@@ -6,13 +6,18 @@ using System.Web.Mvc;
 using WorkNet.Areas.Employer.ViewModels;
 using BLL.Services;
 using BLL.DTOs;
+using Utility;
 
 namespace WorkNet.Areas.Employer.Controllers
 {
     public class AccountController : Controller
     {
-        AccountService _accountService = new AccountService();
-        // GET: Employer/Account
+        private readonly AccountService _accountService;
+        public AccountController()
+        {
+            _accountService = new AccountService();
+        }
+ 
         [HttpGet]
         public ActionResult EmployerLogin()
         {
@@ -30,17 +35,14 @@ namespace WorkNet.Areas.Employer.Controllers
                     Password = employer.Password,
                     Role = "Employer"
                 };
-                if (_accountService.Login(loginDto))
-                {
-                    TempData["LoginMsg"] = "Successfully logged in";
-                    return RedirectToAction("EmployerLogin");
-                }
-                else
-                {
-                    TempData["LoginMsg"] = "Invalid username or password";
+
+                var result = _accountService.Login(loginDto);
+                TempData["LoginMsg"] = result.Message;
+
+                if (result.IsSuccess)
                     return RedirectToAction("index", "Home");
-                }
-                
+                else
+                    return View(employer);
             }
             return View(employer);
         }
@@ -52,7 +54,7 @@ namespace WorkNet.Areas.Employer.Controllers
         }
 
         [HttpPost]
-        public ActionResult EmployerRegsiter(EmployerRegisterVM employer)
+        public ActionResult EmployerRegister(EmployerRegisterVM employer)
         {
             if (ModelState.IsValid)
             {
@@ -66,16 +68,14 @@ namespace WorkNet.Areas.Employer.Controllers
                     Username = employer.Username,
                     Password = employer.Password
                 };
-                if (_accountService.RegisterEmployer(registerDTO))
-                {
-                    TempData["RegisterMsg"] = "Employer Registered Successfully";
-                    RedirectToAction("EmployerLogin");
-                }
+
+                var result = _accountService.RegisterEmployer(registerDTO);
+                TempData["RegisterMsg"] = result.Message;
+
+                if (result.IsSuccess)
+                    return RedirectToAction("EmployerLogin");
                 else
-                {
-                    TempData["RegisterMsg"] = "Someting went wrong";
                     return View(employer);
-                }
             }
             return View(employer);
         }
