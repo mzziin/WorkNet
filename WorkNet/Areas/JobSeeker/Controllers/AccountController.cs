@@ -38,9 +38,10 @@ namespace WorkNet.Areas.JobSeeker.Controllers
                 TempData["JobSeekerLoginMsg"] = result.Message;
 
                 if (result.IsSuccess)
+                {
+                    Session["JobSeekerUserId"] = result.UserId;
                     return RedirectToAction("Index", "Home");
-                else
-                    return View(jobSeeker);
+                }
             }
             return View(jobSeeker);
         }
@@ -61,6 +62,7 @@ namespace WorkNet.Areas.JobSeeker.Controllers
                 {
                     FullName = jobSeeker.FullName,
                     Address = jobSeeker.Address,
+                    Email = jobSeeker.Email,
                     ContactNumber = jobSeeker.ContactNumber,
                     Skills = jobSeeker.Skills,
                     Experience = jobSeeker.Experience,
@@ -73,10 +75,12 @@ namespace WorkNet.Areas.JobSeeker.Controllers
 
                 if (result.IsSuccess)
                     return RedirectToAction("JobSeekerLogin");
-                else
-                    return View(jobSeeker);
             }
             return View(jobSeeker);
+        }
+        public void Logout()
+        {
+            Session["JobSeekerUserId"] = null;
         }
     }
 }

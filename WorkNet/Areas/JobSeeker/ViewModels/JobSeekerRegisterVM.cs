@@ -14,6 +14,10 @@ namespace WorkNet.Areas.JobSeeker.ViewModels
         [Required(ErrorMessage = "Please enter your contact number")]
         [Phone]
         public string ContactNumber { get; set; }
+        
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter your address")]
         public string Address { get; set; }

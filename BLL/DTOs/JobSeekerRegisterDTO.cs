@@ -10,6 +10,7 @@ namespace BLL.DTOs
     {
         public string FullName { get; set; }
         public string ContactNumber { get; set; }
+        public string Email { get; set; }
         public string Address { get; set; }
         public string Skills { get; set; }
         public Nullable<int> Experience { get; set; }

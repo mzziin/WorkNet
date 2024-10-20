@@ -40,9 +40,10 @@ namespace WorkNet.Areas.Employer.Controllers
                 TempData["LoginMsg"] = result.Message;
 
                 if (result.IsSuccess)
+                {
+                    Session["EmployerUserId"] = result.UserId;
                     return RedirectToAction("index", "Home");
-                else
-                    return View(employer);
+                }
             }
             return View(employer);
         }
@@ -78,6 +79,12 @@ namespace WorkNet.Areas.Employer.Controllers
                     return View(employer);
             }
             return View(employer);
+        }
+
+        [HttpGet]
+        public void Logout()
+        {
+            Session["EmployerUserId"] = null;
         }
     }
 }
