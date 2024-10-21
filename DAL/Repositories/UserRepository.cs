@@ -5,24 +5,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utility;
+using System.Data.SqlClient;
+using System.Data.Entity.Core.Objects;
 
 namespace DAL.Repositories
 {
     public class UserRepository : IUserRepository
     {
+        private readonly WorkNetDBEntities _context;
+        public UserRepository()
+        {
+            _context = new WorkNetDBEntities();
+        }
         public int AddUser(User user)
         {
-            throw new NotImplementedException();
+            ObjectParameter op = new ObjectParameter("status", typeof(int));
+            _context.sp_InsertUser(user.Username, user.Email, user.PasswordHash, user.Role, op);
+            int status = Convert.ToInt32(op.Value);
+            if(status != 0)
+            {
+                return status;
+            }
+            return 0;
         }
 
-        public OperationResult GetUserIdByUnameAndPwd(string uname, string pwd)
+        public OperationResult GetUserIdByUnameAndPwd(string uname, string pwd, string role)
         {
             OperationResult result = new OperationResult();
-            if (result.IsSuccess)
+            var user = _context.sp_GetUserIdAndRole(uname, pwd).FirstOrDefault();
+            if (user.UserId != 0 && user.Role == role)
             {
-
+                result.IsSuccess = true;
+                result.Message = "Successfully Logged In";
+                result.UserId = Convert.ToInt32(user.UserId);
             }
-            throw new NotImplementedException();
+            else
+            {
+                result.IsSuccess = false;
+                result.Message = "Incorrect username or password";
+            }
+            return result;
         }
     }
 }

@@ -10,3 +10,5 @@ C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\DAL\obj\Debug\DAL.csproj.CoreC
 C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\DAL\obj\Debug\DAL.dll
 C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\DAL\obj\Debug\DAL.pdb
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\DAL\bin\Debug\Utility.dll
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\DAL\bin\Debug\Utility.pdb

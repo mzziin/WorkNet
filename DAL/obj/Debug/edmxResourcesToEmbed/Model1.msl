@@ -93,5 +93,40 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetUserIdAndRole" FunctionName="WorkNetDBModel.Store.sp_GetUserIdAndRole">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkNetDBModel.sp_GetUserIdAndRole_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_InsertUser" FunctionName="WorkNetDBModel.Store.sp_InsertUser" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="WorkNetDBModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="WorkNetDBModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="WorkNetDBModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="WorkNetDBModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkNetDBModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="WorkNetDBModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkNetDBModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_InsertEmployer" FunctionName="WorkNetDBModel.Store.sp_InsertEmployer" />
+    <FunctionImportMapping FunctionImportName="sp_InsertJobSeeker" FunctionName="WorkNetDBModel.Store.sp_InsertJobSeeker" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="WorkNetDBModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="WorkNetDBModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

@@ -75,6 +75,7 @@ namespace WorkNet.Areas.JobSeeker.Controllers
 
                 if (result.IsSuccess)
                     return RedirectToAction("JobSeekerLogin");
+                
             }
             return View(jobSeeker);
         }

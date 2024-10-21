@@ -1,0 +1,5 @@
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\Utility\bin\Debug\Utility.dll
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\Utility\bin\Debug\Utility.pdb
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\Utility\obj\Debug\Utility.dll
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\Utility\obj\Debug\Utility.pdb

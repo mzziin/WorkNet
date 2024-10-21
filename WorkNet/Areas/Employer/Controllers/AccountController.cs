@@ -42,7 +42,7 @@ namespace WorkNet.Areas.Employer.Controllers
                 if (result.IsSuccess)
                 {
                     Session["EmployerUserId"] = result.UserId;
-                    return RedirectToAction("index", "Home");
+                    return RedirectToAction("JobSeekerLogin", "Account", new { area="JobSeeker" });
                 }
             }
             return View(employer);
@@ -75,8 +75,6 @@ namespace WorkNet.Areas.Employer.Controllers
 
                 if (result.IsSuccess)
                     return RedirectToAction("EmployerLogin");
-                else
-                    return View(employer);
             }
             return View(employer);
         }

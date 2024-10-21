@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Utility;
 using DAL;
 using DAL.Repositories;
-using System.Data.SqlClient;
 
 namespace BLL.Services
 {
@@ -113,7 +112,7 @@ namespace BLL.Services
         }
         public OperationResult Login(LoginDTO loginDTO)
         {
-            return _userRepository.GetUserIdByUnameAndPwd(loginDTO.Username, loginDTO.Password);
+            return _userRepository.GetUserIdByUnameAndPwd(loginDTO.Username, loginDTO.Password, loginDTO.Role);
         }
     }
 }

@@ -87,6 +87,15 @@
     <Compile Include="Repositories\IRepositories\IUserRepository.cs" />
     <Compile Include="Repositories\JobSeekerRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="sp_GetUserIdAndRole_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -97,7 +97,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__JobSeeker__UserI__3B75D760">
+  <Association Name="FK__JobSeeker__UserI__6E01572D">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="JobSeekers" Type="Self.JobSeekers" Multiplicity="*" />
     <ReferentialConstraint>
@@ -157,6 +157,67 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetUserIdAndRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uname" Type="varchar" Mode="In" />
+    <Parameter Name="pwd" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_InsertEmployer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="int" Mode="In" />
+    <Parameter Name="cname" Type="varchar" Mode="In" />
+    <Parameter Name="contactPerson" Type="varchar" Mode="In" />
+    <Parameter Name="contactEmail" Type="varchar" Mode="In" />
+    <Parameter Name="addr" Type="varchar" Mode="In" />
+    <Parameter Name="industry" Type="varchar" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_InsertJobSeeker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="int" Mode="In" />
+    <Parameter Name="fname" Type="varchar" Mode="In" />
+    <Parameter Name="number" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="varchar" Mode="In" />
+    <Parameter Name="skills" Type="varchar" Mode="In" />
+    <Parameter Name="exp" Type="int" Mode="In" />
+    <Parameter Name="resume" Type="varchar" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_InsertUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uname" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="pwd" Type="varchar" Mode="In" />
+    <Parameter Name="role" Type="varchar" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="WorkNetDBModelStoreContainer">
     <EntitySet Name="Employers" EntityType="Self.Employers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JobApplications" EntityType="Self.JobApplications" Schema="dbo" store:Type="Tables" />
@@ -169,7 +230,7 @@
       <End Role="JobSeekers" EntitySet="JobSeekers" />
       <End Role="JobApplications" EntitySet="JobApplications" />
     </AssociationSet>
-    <AssociationSet Name="FK__JobSeeker__UserI__3B75D760" Association="Self.FK__JobSeeker__UserI__3B75D760">
+    <AssociationSet Name="FK__JobSeeker__UserI__6E01572D" Association="Self.FK__JobSeeker__UserI__6E01572D">
       <End Role="Users" EntitySet="Users" />
       <End Role="JobSeekers" EntitySet="JobSeekers" />
     </AssociationSet>

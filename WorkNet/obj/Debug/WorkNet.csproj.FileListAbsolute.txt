@@ -59,3 +59,16 @@ C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\obj\Debug\WorkNet.cspr
 C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\obj\Debug\WorkNet.csproj.CopyComplete
 C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\obj\Debug\WorkNet.dll
 C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\obj\Debug\WorkNet.pdb
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\BLL.dll
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\Utility.dll
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\DAL.dll
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\EntityFramework.dll
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\BLL.pdb
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\Utility.pdb
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\DAL.pdb
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\DAL.dll.config
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\EntityFramework.xml
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\EntityFramework.SqlServer.dll
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\EntityFramework.SqlServer.xml
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\System.Data.SqlClient.dll
+C:\Users\DELL\OneDrive\Desktop\MVCProject\WorkNet\WorkNet\bin\System.Data.SqlClient.xml

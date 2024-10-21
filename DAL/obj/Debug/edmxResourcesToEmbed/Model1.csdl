@@ -201,5 +201,80 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="JobSeekers" EntitySet="JobSeekers" />
     </AssociationSet>
+    <FunctionImport Name="sp_GetUserIdAndRole" ReturnType="Collection(WorkNetDBModel.sp_GetUserIdAndRole_Result)">
+      <Parameter Name="uname" Mode="In" Type="String" />
+      <Parameter Name="pwd" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertUser">
+      <Parameter Name="uname" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="pwd" Mode="In" Type="String" />
+      <Parameter Name="role" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(WorkNetDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(WorkNetDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertEmployer">
+      <Parameter Name="uid" Mode="In" Type="Int32" />
+      <Parameter Name="cname" Mode="In" Type="String" />
+      <Parameter Name="contactPerson" Mode="In" Type="String" />
+      <Parameter Name="contactEmail" Mode="In" Type="String" />
+      <Parameter Name="addr" Mode="In" Type="String" />
+      <Parameter Name="industry" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertJobSeeker">
+      <Parameter Name="uid" Mode="In" Type="Int32" />
+      <Parameter Name="fname" Mode="In" Type="String" />
+      <Parameter Name="number" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="skills" Mode="In" Type="String" />
+      <Parameter Name="exp" Mode="In" Type="Int32" />
+      <Parameter Name="resume" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
+  <ComplexType Name="sp_GetUserIdAndRole_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="Role" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

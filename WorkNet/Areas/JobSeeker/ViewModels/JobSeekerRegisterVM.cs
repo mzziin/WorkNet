@@ -34,7 +34,7 @@ namespace WorkNet.Areas.JobSeeker.ViewModels
         [Required(ErrorMessage = "Please enter your password")]
         [DataType(DataType.Password)]
         [StringLength(100, ErrorMessage = "Password \"{0}\" must have {2} characters", MinimumLength = 8)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", ErrorMessage = "Password must contain: Minimum 8 characters, at least 1 UpperCase Alphabet, 1 LowerCase Alphabet and 1 Number")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8}$", ErrorMessage = "Password must contain: Minimum 8 characters, at least 1 UpperCase Alphabet, 1 LowerCase Alphabet and 1 Number")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Please confirm your password")]
@@ -42,5 +42,6 @@ namespace WorkNet.Areas.JobSeeker.ViewModels
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+       
     }
 }

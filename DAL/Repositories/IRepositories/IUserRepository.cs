@@ -9,7 +9,7 @@ namespace DAL.Repositories.IRepositories
 {
     public interface IUserRepository
     {
-        OperationResult GetUserIdByUnameAndPwd(string uname, string pwd);
+        OperationResult GetUserIdByUnameAndPwd(string uname, string pwd, string role);
         int AddUser(User user);
     }
 }
