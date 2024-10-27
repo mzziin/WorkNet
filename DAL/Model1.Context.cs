@@ -15,10 +15,10 @@ namespace DAL
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class WorkNetDBEntities : DbContext
+    public partial class WorkNetDBEntities1 : DbContext
     {
-        public WorkNetDBEntities()
-            : base("name=WorkNetDBEntities")
+        public WorkNetDBEntities1()
+            : base("name=WorkNetDBEntities1")
         {
         }
     
@@ -27,6 +27,7 @@ namespace DAL
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Candidate> Candidates { get; set; }
         public virtual DbSet<Employer> Employers { get; set; }
         public virtual DbSet<JobApplication> JobApplications { get; set; }
         public virtual DbSet<JobCategory> JobCategories { get; set; }
@@ -34,40 +35,6 @@ namespace DAL
         public virtual DbSet<JobSeeker> JobSeekers { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
-    
-        public virtual ObjectResult<sp_GetUserIdAndRole_Result> sp_GetUserIdAndRole(string uname, string pwd)
-        {
-            var unameParameter = uname != null ?
-                new ObjectParameter("uname", uname) :
-                new ObjectParameter("uname", typeof(string));
-    
-            var pwdParameter = pwd != null ?
-                new ObjectParameter("pwd", pwd) :
-                new ObjectParameter("pwd", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetUserIdAndRole_Result>("sp_GetUserIdAndRole", unameParameter, pwdParameter);
-        }
-    
-        public virtual int sp_InsertUser(string uname, string email, string pwd, string role, ObjectParameter status)
-        {
-            var unameParameter = uname != null ?
-                new ObjectParameter("uname", uname) :
-                new ObjectParameter("uname", typeof(string));
-    
-            var emailParameter = email != null ?
-                new ObjectParameter("email", email) :
-                new ObjectParameter("email", typeof(string));
-    
-            var pwdParameter = pwd != null ?
-                new ObjectParameter("pwd", pwd) :
-                new ObjectParameter("pwd", typeof(string));
-    
-            var roleParameter = role != null ?
-                new ObjectParameter("role", role) :
-                new ObjectParameter("role", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertUser", unameParameter, emailParameter, pwdParameter, roleParameter, status);
-        }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -122,6 +89,19 @@ namespace DAL
                 new ObjectParameter("owner_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetUserIdAndRole_Result> sp_GetUserIdAndRole(string uname, string pwd)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var pwdParameter = pwd != null ?
+                new ObjectParameter("pwd", pwd) :
+                new ObjectParameter("pwd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetUserIdAndRole_Result>("sp_GetUserIdAndRole", unameParameter, pwdParameter);
         }
     
         public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
@@ -212,6 +192,27 @@ namespace DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertJobSeeker", uidParameter, fnameParameter, numberParameter, addressParameter, skillsParameter, expParameter, resumeParameter, status);
         }
     
+        public virtual int sp_InsertUser(string uname, string email, string pwd, string role, ObjectParameter status)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var pwdParameter = pwd != null ?
+                new ObjectParameter("pwd", pwd) :
+                new ObjectParameter("pwd", typeof(string));
+    
+            var roleParameter = role != null ?
+                new ObjectParameter("role", role) :
+                new ObjectParameter("role", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertUser", unameParameter, emailParameter, pwdParameter, roleParameter, status);
+        }
+    
         public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
         {
             var diagramnameParameter = diagramname != null ?
@@ -229,9 +230,53 @@ namespace DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
         }
     
+        public virtual ObjectResult<sp_SearchJobs_Result> sp_SearchJobs(string title, string location)
+        {
+            var titleParameter = title != null ?
+                new ObjectParameter("title", title) :
+                new ObjectParameter("title", typeof(string));
+    
+            var locationParameter = location != null ?
+                new ObjectParameter("location", location) :
+                new ObjectParameter("location", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SearchJobs_Result>("sp_SearchJobs", titleParameter, locationParameter);
+        }
+    
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<sp_GetJobDetail_Result> sp_GetJobDetail(Nullable<int> jobId)
+        {
+            var jobIdParameter = jobId.HasValue ?
+                new ObjectParameter("jobId", jobId) :
+                new ObjectParameter("jobId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetJobDetail_Result>("sp_GetJobDetail", jobIdParameter);
+        }
+    
+        public virtual int sp_InsertJobApplication(Nullable<int> jId, Nullable<int> uId, ObjectParameter status)
+        {
+            var jIdParameter = jId.HasValue ?
+                new ObjectParameter("jId", jId) :
+                new ObjectParameter("jId", typeof(int));
+    
+            var uIdParameter = uId.HasValue ?
+                new ObjectParameter("uId", uId) :
+                new ObjectParameter("uId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertJobApplication", jIdParameter, uIdParameter, status);
+        }
+    
+        public virtual ObjectResult<sp_GetJobSeekerByUserId_Result> sp_GetJobSeekerByUserId(Nullable<int> uId)
+        {
+            var uIdParameter = uId.HasValue ?
+                new ObjectParameter("uId", uId) :
+                new ObjectParameter("uId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetJobSeekerByUserId_Result>("sp_GetJobSeekerByUserId", uIdParameter);
         }
     }
 }

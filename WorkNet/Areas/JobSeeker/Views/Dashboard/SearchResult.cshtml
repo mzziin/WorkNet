@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BLL.DTOs.JobDTO>
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2>Dashboard</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JobId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobRole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Openings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SalaryRange)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobRole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Openings)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalaryRange)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "JobDetails", new {  id=item.JobId  }) |
+        </td>
+    </tr>
+}
+
+</table>

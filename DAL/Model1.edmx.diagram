@@ -4,20 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="046515a58a974d6bafad0486ff299db4" Name="Diagram1">
+      <Diagram DiagramId="91862bc11c7346fba5eada87a7cfeaa9" Name="Diagram1">
+        <EntityTypeShape EntityType="WorkNetDBModel.Candidate" Width="1.5" PointX="5.75" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkNetDBModel.Employer" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkNetDBModel.JobApplication" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkNetDBModel.JobApplication" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkNetDBModel.JobCategory" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkNetDBModel.JobPosting" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkNetDBModel.JobPosting" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkNetDBModel.JobSeeker" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkNetDBModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkNetDBModel.sysdiagram" Width="1.5" PointX="7.75" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkNetDBModel.User" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <AssociationConnector Association="WorkNetDBModel.FK_Employers_Users" ManuallyRouted="false" />
         <AssociationConnector Association="WorkNetDBModel.FK_JobPostings_Employers" ManuallyRouted="false" />
         <AssociationConnector Association="WorkNetDBModel.FK__JobApplic__JobSe__5CD6CB2B" ManuallyRouted="false" />
         <AssociationConnector Association="WorkNetDBModel.FK_JobApplications_JobPostings" ManuallyRouted="false" />
         <AssociationConnector Association="WorkNetDBModel.FK_JobPostings_JobCategories" ManuallyRouted="false" />
-        <AssociationConnector Association="WorkNetDBModel.FK__JobSeeker__UserI__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkNetDBModel.FK__JobSeeker__UserI__6E01572D" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

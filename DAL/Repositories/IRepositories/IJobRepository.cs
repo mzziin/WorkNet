@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.IRepositories
 {
-    public interface IJobSeekerRepository
+    public interface IJobRepository
     {
-        JobSeeker GetJobSeekerByUserId(int UserId);
-        bool AddJobSeeker(JobSeeker employer);
+        List<JobPosting> GetJobsByCriteria(string title, string location);
+        JobPosting GetJobDetails(int id);
+
     }
 }

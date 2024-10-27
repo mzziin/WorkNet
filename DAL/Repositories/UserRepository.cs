@@ -12,10 +12,10 @@ namespace DAL.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly WorkNetDBEntities _context;
+        private readonly WorkNetDBEntities1 _context;
         public UserRepository()
         {
-            _context = new WorkNetDBEntities();
+            _context = new WorkNetDBEntities1();
         }
         public int AddUser(User user)
         {

@@ -1,5 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="WorkNetDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Candidate">
+    <Key>
+      <PropertyRef Name="JobSeekerId" />
+    </Key>
+    <Property Name="JobSeekerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ContactNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Skills" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Experience" Type="Int32" />
+    <Property Name="ResumePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
   <EntityType Name="Employer">
     <Key>
       <PropertyRef Name="EmployerId" />
@@ -46,14 +59,9 @@
     <Property Name="JobType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="JobRole" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="MinExperience" Type="Int32" />
-    <Property Name="MaxExperience" Type="Int32" />
     <Property Name="Openings" Type="Int32" Nullable="false" />
-    <Property Name="RequiredQualification" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="SalaryRange" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PostedDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="RequiredSkills" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Employer" Relationship="Self.FK_JobPostings_Employers" FromRole="JobPostings" ToRole="Employers" />
     <NavigationProperty Name="JobApplications" Relationship="Self.FK_JobApplications_JobPostings" FromRole="JobPostings" ToRole="JobApplications" />
     <NavigationProperty Name="JobCategory" Relationship="Self.FK_JobPostings_JobCategories" FromRole="JobPostings" ToRole="JobCategories" />
@@ -71,7 +79,7 @@
     <Property Name="Experience" Type="Int32" />
     <Property Name="ResumePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="JobApplications" Relationship="Self.FK__JobApplic__JobSe__5CD6CB2B" FromRole="JobSeekers" ToRole="JobApplications" />
-    <NavigationProperty Name="User" Relationship="Self.FK__JobSeeker__UserI__3B75D760" FromRole="JobSeekers" ToRole="Users" />
+    <NavigationProperty Name="User" Relationship="Self.FK__JobSeeker__UserI__6E01572D" FromRole="JobSeekers" ToRole="Users" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -95,7 +103,7 @@
     <Property Name="CreatedDate" Type="DateTime" Precision="0" />
     <Property Name="CreatedTime" Type="Time" Precision="7" />
     <NavigationProperty Name="Employers" Relationship="Self.FK_Employers_Users" FromRole="Users" ToRole="Employers" />
-    <NavigationProperty Name="JobSeekers" Relationship="Self.FK__JobSeeker__UserI__3B75D760" FromRole="Users" ToRole="JobSeekers" />
+    <NavigationProperty Name="JobSeekers" Relationship="Self.FK__JobSeeker__UserI__6E01572D" FromRole="Users" ToRole="JobSeekers" />
   </EntityType>
   <Association Name="FK_Employers_Users">
     <End Role="Users" Type="Self.User" Multiplicity="1" />
@@ -157,7 +165,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__JobSeeker__UserI__3B75D760">
+  <Association Name="FK__JobSeeker__UserI__6E01572D">
     <End Role="Users" Type="Self.User" Multiplicity="1" />
     <End Role="JobSeekers" Type="Self.JobSeeker" Multiplicity="*" />
     <ReferentialConstraint>
@@ -169,7 +177,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="WorkNetDBEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="WorkNetDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Candidates" EntityType="Self.Candidate" />
     <EntitySet Name="Employers" EntityType="Self.Employer" />
     <EntitySet Name="JobApplications" EntityType="Self.JobApplication" />
     <EntitySet Name="JobCategories" EntityType="Self.JobCategory" />
@@ -197,21 +206,10 @@
       <End Role="JobCategories" EntitySet="JobCategories" />
       <End Role="JobPostings" EntitySet="JobPostings" />
     </AssociationSet>
-    <AssociationSet Name="FK__JobSeeker__UserI__3B75D760" Association="Self.FK__JobSeeker__UserI__3B75D760">
+    <AssociationSet Name="FK__JobSeeker__UserI__6E01572D" Association="Self.FK__JobSeeker__UserI__6E01572D">
       <End Role="Users" EntitySet="Users" />
       <End Role="JobSeekers" EntitySet="JobSeekers" />
     </AssociationSet>
-    <FunctionImport Name="sp_GetUserIdAndRole" ReturnType="Collection(WorkNetDBModel.sp_GetUserIdAndRole_Result)">
-      <Parameter Name="uname" Mode="In" Type="String" />
-      <Parameter Name="pwd" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_InsertUser">
-      <Parameter Name="uname" Mode="In" Type="String" />
-      <Parameter Name="email" Mode="In" Type="String" />
-      <Parameter Name="pwd" Mode="In" Type="String" />
-      <Parameter Name="role" Mode="In" Type="String" />
-      <Parameter Name="status" Mode="InOut" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -227,6 +225,10 @@
     <FunctionImport Name="sp_dropdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetUserIdAndRole" ReturnType="Collection(WorkNetDBModel.sp_GetUserIdAndRole_Result)">
+      <Parameter Name="uname" Mode="In" Type="String" />
+      <Parameter Name="pwd" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(WorkNetDBModel.sp_helpdiagramdefinition_Result)">
       <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -255,12 +257,34 @@
       <Parameter Name="resume" Mode="In" Type="String" />
       <Parameter Name="status" Mode="InOut" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_InsertUser">
+      <Parameter Name="uname" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="pwd" Mode="In" Type="String" />
+      <Parameter Name="role" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_renamediagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_SearchJobs" ReturnType="Collection(WorkNetDBModel.sp_SearchJobs_Result)">
+      <Parameter Name="title" Mode="In" Type="String" />
+      <Parameter Name="location" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="sp_GetJobDetail" ReturnType="Collection(WorkNetDBModel.sp_GetJobDetail_Result)">
+      <Parameter Name="jobId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertJobApplication">
+      <Parameter Name="jId" Mode="In" Type="Int32" />
+      <Parameter Name="uId" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetJobSeekerByUserId" ReturnType="Collection(WorkNetDBModel.sp_GetJobSeekerByUserId_Result)">
+      <Parameter Name="uId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_GetUserIdAndRole_Result">
     <Property Type="Int32" Name="UserId" Nullable="false" />
@@ -276,5 +300,41 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_SearchJobs_Result">
+    <Property Type="Int32" Name="JobId" Nullable="false" />
+    <Property Type="Int32" Name="EmployerId" Nullable="false" />
+    <Property Type="Int32" Name="CategoryId" Nullable="false" />
+    <Property Type="String" Name="JobTitle" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="JobDescription" Nullable="false" />
+    <Property Type="String" Name="JobType" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="JobRole" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Location" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="Openings" Nullable="false" />
+    <Property Type="String" Name="SalaryRange" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="PostedDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_GetJobDetail_Result">
+    <Property Type="Int32" Name="JobId" Nullable="false" />
+    <Property Type="Int32" Name="EmployerId" Nullable="false" />
+    <Property Type="Int32" Name="CategoryId" Nullable="false" />
+    <Property Type="String" Name="JobTitle" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="JobDescription" Nullable="false" />
+    <Property Type="String" Name="JobType" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="JobRole" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Location" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="Openings" Nullable="false" />
+    <Property Type="String" Name="SalaryRange" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="PostedDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_GetJobSeekerByUserId_Result">
+    <Property Type="Int32" Name="JobSeekerId" Nullable="false" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Skills" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="Experience" Nullable="true" />
+    <Property Type="String" Name="ResumePath" Nullable="true" MaxLength="255" />
   </ComplexType>
 </Schema>

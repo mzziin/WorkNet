@@ -10,10 +10,10 @@ namespace DAL.Repositories
 {
     public class JobSeekerRepository : IJobSeekerRepository
     {
-        private readonly WorkNetDBEntities _context;
+        private readonly WorkNetDBEntities1 _context;
         public JobSeekerRepository()
         {
-            _context = new WorkNetDBEntities();
+            _context = new WorkNetDBEntities1();
         }
         public bool AddJobSeeker(JobSeeker jobSeeker)
         {
@@ -28,20 +28,33 @@ namespace DAL.Repositories
                 jobSeeker.ResumePath,
                 op
                 );
+
             int status = Convert.ToInt32(op.Value);
+
             if(status == 1)
-            {
                 return true;
-            }
             else
-            {
                 return false;
-            }
         }
 
-        public JobSeeker GetJobSeekerById(int id)
+        public JobSeeker GetJobSeekerByUserId(int UserId)
         {
-            throw new NotImplementedException();
+            var result = _context.sp_GetJobSeekerByUserId(UserId).FirstOrDefault();
+
+            if (result == null)
+                return null;
+
+            return new JobSeeker
+            {
+                UserId = result.UserId,
+                FullName = result.FullName,
+                JobSeekerId = result.JobSeekerId,
+                Address = result.Address,
+                ContactNumber = result.ContactNumber,
+                Experience = result.Experience,
+                ResumePath = result.ResumePath,
+                Skills = result.Skills,
+            };
         }
     }
 }

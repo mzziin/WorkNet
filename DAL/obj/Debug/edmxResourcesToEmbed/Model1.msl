@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="WorkNetDBModelStoreContainer" CdmEntityContainer="WorkNetDBEntities">
+  <EntityContainerMapping StorageEntityContainer="WorkNetDBModelStoreContainer" CdmEntityContainer="WorkNetDBEntities1">
+    <EntitySetMapping Name="Candidates">
+      <EntityTypeMapping TypeName="WorkNetDBModel.Candidate">
+        <MappingFragment StoreEntitySet="Candidates">
+          <ScalarProperty Name="JobSeekerId" ColumnName="JobSeekerId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Skills" ColumnName="Skills" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="ResumePath" ColumnName="ResumePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Employers">
       <EntityTypeMapping TypeName="WorkNetDBModel.Employer">
         <MappingFragment StoreEntitySet="Employers">
@@ -44,14 +58,9 @@
           <ScalarProperty Name="JobType" ColumnName="JobType" />
           <ScalarProperty Name="JobRole" ColumnName="JobRole" />
           <ScalarProperty Name="Location" ColumnName="Location" />
-          <ScalarProperty Name="MinExperience" ColumnName="MinExperience" />
-          <ScalarProperty Name="MaxExperience" ColumnName="MaxExperience" />
           <ScalarProperty Name="Openings" ColumnName="Openings" />
-          <ScalarProperty Name="RequiredQualification" ColumnName="RequiredQualification" />
           <ScalarProperty Name="SalaryRange" ColumnName="SalaryRange" />
           <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
-          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-          <ScalarProperty Name="RequiredSkills" ColumnName="RequiredSkills" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -93,6 +102,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="WorkNetDBModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="WorkNetDBModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="WorkNetDBModel.Store.sp_dropdiagram" />
     <FunctionImportMapping FunctionImportName="sp_GetUserIdAndRole" FunctionName="WorkNetDBModel.Store.sp_GetUserIdAndRole">
       <ResultMapping>
         <ComplexTypeMapping TypeName="WorkNetDBModel.sp_GetUserIdAndRole_Result">
@@ -101,10 +113,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_InsertUser" FunctionName="WorkNetDBModel.Store.sp_InsertUser" />
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="WorkNetDBModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="WorkNetDBModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="WorkNetDBModel.Store.sp_dropdiagram" />
     <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="WorkNetDBModel.Store.sp_helpdiagramdefinition">
       <ResultMapping>
         <ComplexTypeMapping TypeName="WorkNetDBModel.sp_helpdiagramdefinition_Result">
@@ -126,7 +134,57 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_InsertEmployer" FunctionName="WorkNetDBModel.Store.sp_InsertEmployer" />
     <FunctionImportMapping FunctionImportName="sp_InsertJobSeeker" FunctionName="WorkNetDBModel.Store.sp_InsertJobSeeker" />
+    <FunctionImportMapping FunctionImportName="sp_InsertUser" FunctionName="WorkNetDBModel.Store.sp_InsertUser" />
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="WorkNetDBModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_SearchJobs" FunctionName="WorkNetDBModel.Store.sp_SearchJobs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkNetDBModel.sp_SearchJobs_Result">
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobType" ColumnName="JobType" />
+          <ScalarProperty Name="JobRole" ColumnName="JobRole" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Openings" ColumnName="Openings" />
+          <ScalarProperty Name="SalaryRange" ColumnName="SalaryRange" />
+          <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="WorkNetDBModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_GetJobDetail" FunctionName="WorkNetDBModel.Store.sp_GetJobDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkNetDBModel.sp_GetJobDetail_Result">
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="JobType" ColumnName="JobType" />
+          <ScalarProperty Name="JobRole" ColumnName="JobRole" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Openings" ColumnName="Openings" />
+          <ScalarProperty Name="SalaryRange" ColumnName="SalaryRange" />
+          <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_InsertJobApplication" FunctionName="WorkNetDBModel.Store.sp_InsertJobApplication" />
+    <FunctionImportMapping FunctionImportName="sp_GetJobSeekerByUserId" FunctionName="WorkNetDBModel.Store.sp_GetJobSeekerByUserId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkNetDBModel.sp_GetJobSeekerByUserId_Result">
+          <ScalarProperty Name="JobSeekerId" ColumnName="JobSeekerId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Skills" ColumnName="Skills" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="ResumePath" ColumnName="ResumePath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

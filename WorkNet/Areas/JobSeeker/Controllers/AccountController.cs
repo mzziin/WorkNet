@@ -40,7 +40,7 @@ namespace WorkNet.Areas.JobSeeker.Controllers
                 if (result.IsSuccess)
                 {
                     Session["JobSeekerUserId"] = result.UserId;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Home", "Dashboard");
                 }
             }
             return View(jobSeeker);

@@ -1,5 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="WorkNetDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Candidates">
+    <Key>
+      <PropertyRef Name="JobSeekerId" />
+    </Key>
+    <Property Name="JobSeekerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ContactNumber" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="255" />
+    <Property Name="Skills" Type="varchar" MaxLength="255" />
+    <Property Name="Experience" Type="int" />
+    <Property Name="ResumePath" Type="varchar" MaxLength="255" />
+  </EntityType>
   <EntityType Name="Employers">
     <Key>
       <PropertyRef Name="EmployerId" />
@@ -41,14 +54,9 @@
     <Property Name="JobType" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="JobRole" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Location" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="MinExperience" Type="int" />
-    <Property Name="MaxExperience" Type="int" />
     <Property Name="Openings" Type="int" Nullable="false" />
-    <Property Name="RequiredQualification" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="SalaryRange" Type="varchar" MaxLength="50" />
     <Property Name="PostedDate" Type="date" Nullable="false" />
-    <Property Name="ExpiryDate" Type="date" Nullable="false" />
-    <Property Name="RequiredSkills" Type="varchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="JobSeekers">
     <Key>
@@ -174,6 +182,12 @@
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_GetJobDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jobId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetJobSeekerByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uId" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_GetUserIdAndRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="uname" Type="varchar" Mode="In" />
     <Parameter Name="pwd" Type="varchar" Mode="In" />
@@ -193,6 +207,11 @@
     <Parameter Name="contactEmail" Type="varchar" Mode="In" />
     <Parameter Name="addr" Type="varchar" Mode="In" />
     <Parameter Name="industry" Type="varchar" Mode="In" />
+    <Parameter Name="status" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_InsertJobApplication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jId" Type="int" Mode="In" />
+    <Parameter Name="uId" Type="int" Mode="In" />
     <Parameter Name="status" Type="int" Mode="InOut" />
   </Function>
   <Function Name="sp_InsertJobSeeker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -217,8 +236,13 @@
     <Parameter Name="owner_id" Type="int" Mode="In" />
     <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_SearchJobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="title" Type="varchar" Mode="In" />
+    <Parameter Name="location" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="WorkNetDBModelStoreContainer">
+    <EntitySet Name="Candidates" EntityType="Self.Candidates" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employers" EntityType="Self.Employers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JobApplications" EntityType="Self.JobApplications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JobCategories" EntityType="Self.JobCategories" Schema="dbo" store:Type="Tables" />

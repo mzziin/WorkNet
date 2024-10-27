@@ -123,7 +123,9 @@
     <Compile Include="Areas\Employer\EmployerAreaRegistration.cs" />
     <Compile Include="Areas\Employer\ViewModels\EmployerLoginVM.cs" />
     <Compile Include="Areas\JobSeeker\Controllers\AccountController.cs" />
+    <Compile Include="Areas\JobSeeker\Controllers\DashboardController.cs" />
     <Compile Include="Areas\JobSeeker\JobSeekerAreaRegistration.cs" />
+    <Compile Include="Areas\JobSeeker\ViewModels\JobSearchVM.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -169,6 +171,9 @@
     <Content Include="Areas\JobSeeker\Views\Account\JobSeekerRegister.cshtml" />
     <Content Include="Areas\JobSeeker\Views\Account\JobSeekerLogin.cshtml" />
     <Content Include="Areas\Employer\Views\Account\EmployerLogin.cshtml" />
+    <Content Include="Areas\JobSeeker\Views\Dashboard\SearchResult.cshtml" />
+    <Content Include="Areas\JobSeeker\Views\Dashboard\Home.cshtml" />
+    <Content Include="Areas\JobSeeker\Views\Dashboard\JobDetails.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -197,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\JobSeeker\Views\Home\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>

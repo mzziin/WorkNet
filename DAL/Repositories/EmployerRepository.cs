@@ -10,10 +10,10 @@ namespace DAL.Repositories
 {
     public class EmployerRepository : IEmployerRepository
     {
-        private readonly WorkNetDBEntities _context;
+        private readonly WorkNetDBEntities1 _context;
         public EmployerRepository()
         {
-            _context = new WorkNetDBEntities();
+            _context = new WorkNetDBEntities1();
         }
 
         public bool AddEmployer(Employer employer)
@@ -29,14 +29,11 @@ namespace DAL.Repositories
                 op
                 );
             int status = Convert.ToInt32(op.Value);
-            if(status == 1)
-            {
+
+            if(status > 0)
                 return true;
-            }
             else
-            {
                 return false;
-            }
         }
 
 
